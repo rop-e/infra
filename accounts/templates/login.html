@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+
+
+{% block content %}
+
+<div class="container">
+<h1>Login</h1>
+<div class="row">
+    <form class="col s12" method='POST'>
+        {% csrf_token %} 
+      <div class="row">
+        <div class="input-field col s12">
+          {{form.username}}
+          {{form.username.label_tag}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+            {{form.password}}
+            {{form.password.label_tag}}
+        </div>
+      </div>
+      {{form.errors}}
+      <button class="btn waves-effect waves-light" type="submit">Login</button>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}
