@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% load static %} {% block extra-css %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'assets/css/home.css' %}"
+/>
+{% endblock extra-css %} {% block content %}
+<h1>BoilerPlate Docker Django Prostgres - BoilerPlate-DDP</h1>
+<p>
+  A Implementation BoilerPlate for fast install with docker and docker-compose
+  of django web framework using postgres data base.
+</p>
+<figure>
+  <img
+    class="img-boiler"
+    src="{% static 'assets/img/thumbnail.png' %}"
+    alt="Uma imagem impressionante"
+  />
+  <figcaption>
+    Using
+    <a href="https://github.com/cflb/django_project_boilerplate"
+      >Django Project Boilerplate</a
+    >
+    forked <a href="https://github.com/justdjango">JustDjango</a>
+  </figcaption>
+</figure>
+
+{% endblock content %}
