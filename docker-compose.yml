@@ -19,7 +19,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - "./src/static_files:/www/static"
+      - "./src/static:/www/static"
     links:
       - webapp:webapp
 
@@ -32,16 +32,8 @@ services:
       - master_vol:/var/lib/postgresql
     ports:
       - "5433:5434"
-    environment:
-      - DEBUG=false
-      - DB_USER=postgres_user
-      - DB_PASS=postgres_password
-      - DB_NAME=postgres_dbname
-      - DB_UNACCENT=false
-      - REPLICATION_MODE=master
-      - REPLICATION_USER=replicator
-      - REPLICATION_PASS=replpassword
-      - REPLICATION_SSLMODE=
+    env_file:
+      - ./.master.env
 
   ### PostgreSQL Container (Slave) ####################################
 
@@ -54,12 +46,8 @@ services:
       - "5432"
     links:
       - master:master
-    environment:
-      - DEBUG=false
-      - REPLICATION_MODE=slave
-      - REPLICATION_HOST=master
-      - REPLICATION_USER=replicator
-      - REPLICATION_PASS=replpassword
+    env_file:
+      - ./.slave.env
 
   ### pgAdmin Container (Master) #######################################
 
