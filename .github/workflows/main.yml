@@ -8,12 +8,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
-        run: docker-compose up -d 
+        run: docker-compose up -d
+      - name: Show logs webapp
+        run: docker-compose logs webapp
       - name: Sleep
         run: docker ps
-      - name: Run migrations
-        run: docker-compose exec -it webapp python manage.py makemigrations 
-      - name: Run migrate
-        run: docker-compose exec -it webapp python manage.py migrate
-      - name: Run test
-        run: docker-conpose exec -it webapp python manage.py test
+      #- name: Run migrations
+      #  run: docker-compose exec -it webapp python manage.py makemigrations 
+      #- name: Run migrate
+      #  run: docker-compose exec -it webapp python manage.py migrate
+      #- name: Run test
+      #  run: docker-conpose exec -it webapp python manage.py test
