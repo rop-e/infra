@@ -2,9 +2,10 @@ import os
 
 ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
 
-DEBUG = True
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SECRET_KEY = '-05sgp9!deq=q1nltm@^^2cc+v29i(tyybv3v2t77qi66czazj'
+# '-05sgp9!deq=q1nltm@^^2cc+v29i(tyybv3v2t77qi66czazj'
+
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
@@ -14,7 +15,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core'
+]
+
+# my installed apps
+INSTALLED_APPS += [
+    'core.apps.CoreConfig',
 ]
 
 MIDDLEWARE = [
@@ -57,21 +62,48 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, 'db.sqlite3')
+if os.environ.get('DATABASE') == 'MYSQL':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.environ.get('DB_NAME'),
+            'USER': os.environ.get('DB_USER'),
+            'PASSWORD': os.environ.get('DB_PASSWORD'),
+            'HOST': os.environ.get('DB_HOST'),
+            'PORT': os.environ.get('DB_PORT'),
+        }
     }
-}
+elif os.environ.get('DATABASE') == 'POSTGRESQL':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.environ.get('DB_NAME'),
+            'USER': os.environ.get('DB_USER'),
+            'PASSWORD': os.environ.get('DB_PASSWORD'),
+            'HOST': os.environ.get('DB_HOST'),
+            'PORT': os.environ.get('DB_PORT'),
+        }
+    }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, 'db.sqlite3')
+        }
+    }
+ENVIRONMENT = os.environ.get('ENVIRONMENT')
 
 if ENVIRONMENT == 'production':
-    DEBUG = False
-    SECRET_KEY = os.getenv('SECRET_KEY')
-    SESSION_COOKIE_SECURE = True
-    SECURE_BROWSER_XSS_FILTER = True
-    SECURE_CONTENT_TYPE_NOSNIFF = True
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_SECONDS = 31536000
-    SECURE_REDIRECT_EXEMPT = []
-    SECURE_SSL_REDIRECT = True
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    DEBUG = os.environ.get('DEBUG')
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+    #SESSION_COOKIE_SECURE = True
+    #SECURE_BROWSER_XSS_FILTER = True
+    #SECURE_CONTENT_TYPE_NOSNIFF = True
+    #SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    #SECURE_HSTS_SECONDS = 31536000
+    #SECURE_REDIRECT_EXEMPT = []
+    #SECURE_SSL_REDIRECT = True
+    #SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+else:
+    DEBUG = True
+    SECRET_KEY = '123456789)*(&^%$#@'
