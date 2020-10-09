@@ -1,5 +1,5 @@
 FROM python:3.7-alpine
-RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev vim jpeg-dev zlib-dev tzdata
+RUN apk update && apk add nmap postgresql-dev gcc python3-dev musl-dev vim jpeg-dev zlib-dev tzdata
 ENV TZ America/Bahia
 LABEL maintainer="Your Django Project"
 

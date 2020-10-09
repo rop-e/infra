@@ -8,14 +8,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
-        run: docker-compose up -d
-      - name: Show logs master
-        run: docker-compose logs master
-      - name: Test connection master database
-        run: docker-compose exec -T master pwd 
-      - name: Run makemigrations
-        run: docker-compose exec -T webapp python manage.py makemigrations 
+        run: docker-compose up -d --build --force-recreate
+      - name: Espere eu me recompor
+        uses: juliangruber/sleep-action@v1
+        with:
+          time: '10s' 
+      - name: Show contianers
+        run: docker-compose ps
       - name: Run migrate
         run: docker-compose exec -T webapp python manage.py migrate
+      - name: Create a admin User
+        run: docker-compose exec -T webapp python manage.py makesuper 
       - name: Run test
-        run: docker-conpose exec -T webapp python manage.py test
+        run: docker-compose exec -T webapp python manage.py test  
