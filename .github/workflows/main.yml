@@ -11,11 +11,11 @@ jobs:
         run: docker-compose up -d --build --force-recreate
       - name: Show contianers
         run: docker-compose ps
-      - name: Test connection master database
-        run: docker-compose exec -T webapp nmap master -P
       - name: Run makemigrations
         run: docker-compose exec -T webapp python manage.py makemigrations 
       - name: Run migrate
         run: docker-compose exec -T webapp python manage.py migrate
+      - name: Create a admin User
+        run: docker-compose exec -T webapp python manage.py makesuperuser 
       - name: Run test
         run: docker-compose exec -T webapp python manage.py test
