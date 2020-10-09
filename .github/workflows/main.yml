@@ -9,13 +9,16 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build the stack
         run: docker-compose up -d
-      - name: Show contianers
+      - name: Estou com sono!
+        with:
+          time: '7s'
+      - name: Ops... dormi por 7 segundos. > Show contianers
         run: docker-compose ps
       - name: Test connection master database
-        run: docker-compose exec -T webapp nmap master
+        run: docker-compose exec -T webapp nmap master -P
       - name: Run makemigrations
         run: docker-compose exec -T webapp python manage.py makemigrations 
       - name: Run migrate
         run: docker-compose exec -T webapp python manage.py migrate
       - name: Run test
-        run: docker-conpose exec -T webapp python manage.py test
+        run: docker-compose exec -T webapp python manage.py test
