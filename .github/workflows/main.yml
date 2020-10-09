@@ -16,6 +16,6 @@ jobs:
       - name: Run migrate
         run: docker-compose exec -T webapp python manage.py migrate
       - name: Create a admin User
-        run: docker-compose exec -T webapp python manage.py makesuperuser 
+        run: docker-compose exec -T webapp python manage.py makesuper 
       - name: Run test
-        run: docker-compose exec -T webapp python manage.py test
+        run: docker-compose exec -T webapp python manage.py test  
