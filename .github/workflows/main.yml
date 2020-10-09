@@ -1,7 +1,7 @@
 name: docker-compose-actions-workflow
 on:
   push:
-    branches: [ teste-db-connection ]
+    branches: [ master ]
 jobs:
   build:
     runs-on: ubuntu-latest
