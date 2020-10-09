@@ -1,6 +1,38 @@
-# Boilerplate - ddp (Docker - Django - Postgres)
+# My Base Application
 
-Basic requirements (docker and docker-compose)
+Um boilerplate implementado para sustentar uma aplicação django (websites, webapps, APIs) de fácil instalação e manutenção. 
+
+##  Esta infraestrutura suporta:
+
+> ## Banco de dados: 
+   - SQLite
+   - PostgreSQL
+
+Para escolher o SGBD apenas necessário editar a variável de ambiente, $DATABASE e atribuir um destes valores [SQLITE | MYSQL | POSTGRESQL]: 
+>Por exemplo: $DATABASE=POSTGRESQL
+
+> ## Banco de dados com replicação
+
+Esta infraestrutura possui duas instâncias de banco de dados, uma chamada de "master" e uma "slave". De forma que a instância slave é uma cópia em tempo real da instância master.
+
+> ## Interface de gerenciamento do banco de dados
+
+   1. PgAdmin
+
+> ### Proxy reverso com Nginx
+> ### Base para uma aplicação gjango /src
+
+# Esta implementação usa:
+
+## Motor base: 
+
+   1. Docker
+   2. Docker Compose
+
+## Umsamos como inspiração:
+### Boilerplate - ddp (Docker - Django - Postgres)
+
+   - Basic requirements (docker and docker-compose)
 
 To install use:
 
@@ -22,12 +54,12 @@ Open browser:
 
 > localhost
 
-## Django Project Boileplate
+### Django Project Boileplate
 
 1. Rename your project with:
    > python manage.py rename yourprojectname newprojectname
 
-### This project includes:
+#### This project includes:
 
 1. Settings modules for deploying with Azure
 2. Django commands for renaming your project and creating a superuser
