@@ -1,7 +1,7 @@
 name: docker-compose-actions-workflow
 on:
   push:
-    branches: [ master ]
+    branches: [ teste-db-connection ]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -9,10 +9,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build the stack
         run: docker-compose up -d
-      - name: Show logs master
-        run: docker-compose logs master
+      - name: Show contianers
+        run: docker-compose ps
       - name: Test connection master database
-        run: docker-compose exec -T master pwd 
+        run: docker-compose exec -T webapp nmap master
       - name: Run makemigrations
         run: docker-compose exec -T webapp python manage.py makemigrations 
       - name: Run migrate
