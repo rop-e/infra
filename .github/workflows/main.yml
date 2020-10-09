@@ -12,7 +12,7 @@ jobs:
       - name: Show logs webapp
         run: docker-compose logs webapp
       - name: Sleep
-        run: docker ps
+        run: docker-compose ps
       - name: Run makemigrations
         run: docker-compose exec -T webapp python manage.py makemigrations 
       - name: Run migrate
