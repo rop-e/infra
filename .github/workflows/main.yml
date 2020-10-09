@@ -9,10 +9,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build the stack
         run: docker-compose up -d
-      - name: Estou com sono!
-        with:
-          time: '7s'
-      - name: Ops... dormi por 7 segundos. > Show contianers
+      - name: Show contianers
         run: docker-compose ps
       - name: Test connection master database
         run: docker-compose exec -T webapp nmap master -P
