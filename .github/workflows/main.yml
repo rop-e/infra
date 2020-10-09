@@ -9,9 +9,11 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build the stack
         run: docker-compose up -d --build --force-recreate
+      - name: Espere eu me recompor
+        uses: juliangruber/sleep-action@v1
         with:
-          time: '10s'
-      - name: Espere eu me recompor... Show contianers
+          time: '10s' 
+      - name: Show contianers
         run: docker-compose ps
       - name: Run migrate
         run: docker-compose exec -T webapp python manage.py migrate
