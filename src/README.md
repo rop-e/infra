@@ -1,4 +1,7 @@
-# Django Project Boilerplate
+# Django Project Boilerplate - IMPLEMENTATION FOR ROPe
+
+------------------------------- MORE INFORMATION - COOMING SOON
+
 
 This repository is a boilerplate Django project for quickly getting started.
 
