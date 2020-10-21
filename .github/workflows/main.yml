@@ -1,6 +1,8 @@
 name: docker-compose-actions-workflow
 on:
   push:
+    branches: [ v0.1 ]
+  pull_request:
     branches: [ master ]
 jobs:
   build:

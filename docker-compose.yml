@@ -11,7 +11,7 @@ services:
       - "./src:/src"
     env_file:
       - ./src/django.env
-    command: gunicorn demo.wsgi:application -w 2 -b :8000
+    command: gunicorn ropd.wsgi:application -w 2 -b :8000
 
   staticfiles:
     restart: always
