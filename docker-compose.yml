@@ -55,6 +55,8 @@ services:
     build: ./pgadmin
     ports:
       - "5051:5051"
+    env_file:
+      - ./pgadmin/pg4.env
     links:
       - master
 
