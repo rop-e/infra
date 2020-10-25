@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clonando Applicacao - src/
-        run: git clone https://github.com/rop-e/application.git src
+        run: git clone git@github.com:rop-e/application.git src
       - uses: actions/checkout@v2
       - name: Build the stack
         run: docker-compose up -d --build --force-recreate
