@@ -27,19 +27,19 @@ services:
 
   master:
     restart: always
-    build: ./master
+    build: ./pg_db/pg_master
     volumes:
       - master_vol:/var/lib/postgresql
     ports:
       - "5434:5432"
     env_file:
-      - ./.master.env
+      - ./pg_db/pg_master/.master.env
 
   ### PostgreSQL Container (Slave) ####################################
 
   slave:
     restart: always
-    build: ./slave
+    build: ./pg_db/pg_slave
     volumes:
       - slave_vol:/var/lib/postgresql
     ports:
@@ -47,7 +47,7 @@ services:
     links:
       - master:master
     env_file:
-      - ./.slave.env
+      - ./pg_db/.slave.env
 
   ### pgAdmin Container (Master) #######################################
 
