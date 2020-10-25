@@ -47,16 +47,16 @@ services:
     links:
       - master:master
     env_file:
-      - ./pg_db/.slave.env
+      - ./pg_db/pg_slave/.slave.env
 
   ### pgAdmin Container (Master) #######################################
 
   pgadmin:
-    build: ./pgadmin
+    build: ./pg_db/pgadmin
     ports:
       - "5051:5051"
     env_file:
-      - ./pgadmin/pg4.env
+      - ./pg_db/pgadmin/pg4.env
     links:
       - master
 
