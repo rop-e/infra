@@ -9,8 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Clonando Applicacao - src/
-        run: git clone git@github.com:rop-e/application.git src
       - name: Build the stack
         run: docker-compose up -d --build --force-recreate
       - name: Espere eu me recompor
