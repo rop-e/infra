@@ -11,7 +11,7 @@ services:
       - "./src:/src"
     env_file:
       - ./src/django.env
-    command: gunicorn demo.wsgi:application -w 2 -b :8000
+    command: gunicorn ropd.wsgi:application -w 2 -b :8000
     links:
       - redis
 
@@ -73,7 +73,7 @@ services:
       expose:
         - "6379"
       volumes:
-        - redisdata:/data
+        - redis_vol:/data
 
 volumes:
   master_vol:
@@ -82,5 +82,5 @@ volumes:
     driver: "local"
   sessions: ## nothing is connected to this (- ./data/sessions:/sessions)
     driver: "local"
-  dados_redis:
+  redis_vol:
     driver: "local"
