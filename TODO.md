@@ -1,4 +1,4 @@
-# Funcionalidades para a versão 0.2
+# Funcionalidades para a versão 2.1
 
 ## NEW:
     1 [x] Suporte a REDIS
@@ -7,6 +7,7 @@
      
 ## FIX
     1 [x] Erro BAD Gateway 502 api/v0/policialviatura
+    2 [x] Remove pg_admin da producao
 
 ## TEXT
     1 TEST FUNCIONALIDADES BASE
