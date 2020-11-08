@@ -1,3 +1,5 @@
 [submodule "src"]
 	path = src
 	url = git@github.com:rop-e/application.git
+[submodule "application"]
+	branch = v2.0
