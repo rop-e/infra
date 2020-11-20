@@ -15,9 +15,9 @@ services:
     links:
       - redis
 
-  staticfiles:
+  web-proxy:
     restart: always
-    build: ./nginx/
+    build: ./proxy-web/
     ports:
       - "80:80"
     volumes:
