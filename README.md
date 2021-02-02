@@ -1,6 +1,7 @@
-# My Base Application
+# My Base Application 4 ROP-e
 
-Um boilerplate implementado para sustentar uma aplicação django (websites, webapps, APIs) de fácil instalação e manutenção. 
+Um boilerplate implementado para sustentar uma aplicação django (websites, webapps, APIs) de fácil instalação e manutenção.
+Base customizada para a Platafor ROP-e (Relatorio de Ocorrencias Policiais Eletrônica) 
 
 ##  Esta infraestrutura suporta:
 
@@ -19,8 +20,9 @@ Esta infraestrutura possui duas instâncias de banco de dados, uma chamada de "m
 
    1. PgAdmin
 
-> ### Proxy reverso com Nginx
-> ### Base para uma aplicação gjango /src
+> ## HTTPs
+> ## Proxy reverso com Nginx
+> ## Base para uma aplicação gjango /src
 
 # Esta implementação usa:
 

@@ -10,7 +10,7 @@ services:
     volumes:
       - "./src:/src"
     env_file:
-      - ./src/django.env
+      - .django.env
     command: gunicorn ropd.wsgi:application -w 2 -b :8000
     links:
       - redis
