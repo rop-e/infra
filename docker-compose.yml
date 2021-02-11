@@ -15,13 +15,18 @@ services:
     links:
       - redis
 
-  web-proxy:
+  webproxy:
     restart: always
     build: ./proxy-web/
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - "./src/static:/www/static"
+      - "./src/media:/www/media"
+
+      - "/etc/letsencrypt:/etc/letsencrypt"
+      - "/var/lib/letsencrypt:/var/lib/letsencrypt"  
     links:
       - redis
       - webapp:webapp
