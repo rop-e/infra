@@ -20,6 +20,7 @@ services:
     build: ./webproxy/nginx/
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - "./src/static:/www/static"
       - "./src/media:/www/media"
