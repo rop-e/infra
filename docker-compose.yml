@@ -15,13 +15,17 @@ services:
     links:
       - redis
 
-  staticfiles:
+  webproxy:
     restart: always
-    build: ./nginx/
+    build: ./webproxy/nginx/
     ports:
       - "80:80"
     volumes:
       - "./src/static:/www/static"
+      - "./src/media:/www/media"
+
+      - "/etc/letsencrypt:/etc/letsencrypt"
+      - "/var/lib/letsencrypt:/var/lib/letsencrypt"
     links:
       - redis
       - webapp:webapp
