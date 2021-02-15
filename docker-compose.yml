@@ -11,6 +11,9 @@ services:
       context: .
     ports:
       - 8000:8000
+      - 25:25
+    expose:
+      - 25
     volumes:
       - "./src:/src"
     env_file:
