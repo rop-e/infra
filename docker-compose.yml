@@ -27,6 +27,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
+      - "25:25"
     volumes:
       - "./src/static:/www/static"
       - "./src/media:/www/media"
