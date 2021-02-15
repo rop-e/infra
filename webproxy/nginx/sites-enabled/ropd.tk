@@ -49,11 +49,11 @@ server {
         root /www/;
     }
 
-    location /static {
+    location static/ {
         root /www/static/;
     }
 
-    location /media {
+    location media/ {
         root /www/media/;
     }
 
