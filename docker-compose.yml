@@ -1,5 +1,9 @@
 version: "3"
 
+networks:
+  rope-net:
+    external: true
+
 services:
   webapp:
     restart: always
@@ -14,6 +18,8 @@ services:
     command: python3 manage.py runserver 0.0.0.0:8000 # gunicorn ropd.wsgi:application -w 2 -b :8000
     links:
       - redis
+    networks:
+      - rope-net  
 
   webproxy:
     restart: always
@@ -34,6 +40,8 @@ services:
       - PORT_REDIS=6379
       - HOST_REDIS=redis
 
+    networks:
+      - rope-net  
   ### PostgreSQL Container (Master) ####################################
 
   master:
@@ -45,7 +53,8 @@ services:
       - "5434:5432"
     env_file:
       - ./pg_db/pg_master/.master.env
-
+    networks:
+      - rope-net  
   ### PostgreSQL Container (Slave) ####################################
 
   slave:
@@ -59,7 +68,8 @@ services:
       - master:master
     env_file:
       - ./pg_db/pg_slave/.slave.env
-
+    networks:
+      - rope-net
   ### pgAdmin Container (Master) #######################################
 
   pgadmin:
@@ -70,15 +80,18 @@ services:
       - ./pg_db/pgadmin/pg4.env
     links:
       - master
-
+    networks:
+      - rope-net
   ### REDIS Container ##################################################
   redis:
-      restart: always
-      image: redis:3.2.0
-      expose:
-        - "6379"
-      volumes:
-        - redis_vol:/data
+    restart: always
+    image: redis:3.2.0
+    expose:
+      - "6379"
+    volumes:
+      - redis_vol:/data
+    networks:
+      - rope-net
 
 volumes:
   master_vol:
