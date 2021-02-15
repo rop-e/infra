@@ -1,7 +1,7 @@
-upstream django {
+upstream webapp {
     # server APP_SERVER_1_IP;
     # server APP_SERVER_2_IP;
-    server webapp;
+    server webapp:8000;
 }
 
 server {
@@ -46,7 +46,15 @@ server {
         }
 
     location ^~ /.well-known/acme-challenge/ {
+        root /www/;
+    }
+
+    location /static {
         root /www/static/;
+    }
+
+    location /media {
+        root /www/media/;
     }
 
 }
