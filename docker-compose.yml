@@ -11,7 +11,7 @@ services:
       - "./src:/src"
     env_file:
       - .django.env
-    command: gunicorn ropd.wsgi:application -w 2 -b :8000
+    command: python3 manage.py runserver 0.0.0.0:8000 # gunicorn ropd.wsgi:application -w 2 -b :8000
     links:
       - redis
 
