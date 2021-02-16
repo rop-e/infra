@@ -12,18 +12,18 @@ server {
 server {
     listen 80;
     listen [::]:80;
-    server_name ropd.tk;
+    server_name rop-e.com;
     return 301 https://$server_name$request_uri;
 }
 
 server {
     listen 443 ssl;
     listen [::]:443 ssl;
-    server_name ropd.tk;
+    server_name rop-e.com;
 
     # SSL
-    ssl_certificate /etc/letsencrypt/live/ropd.tk/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/ropd.tk/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/rop-e.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/rop-e.com/privkey.pem;
 
     #ssl_session_cache shared:le_nginx_SSL:10m;
     #ssl_session_timeout 1440m;
