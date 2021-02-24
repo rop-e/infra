@@ -14,11 +14,13 @@ services:
       - 25:25
     expose:
       - 25
+      - 8000  
     volumes:
       - "./src:/src"
+      - "/etc/localtime:/etc/localtime"
     env_file:
       - .django.env
-    command: python3 manage.py runserver 0.0.0.0:8000 # gunicorn ropd.wsgi:application -w 2 -b :8000
+    command: gunicorn --access-logfile ../access.log --error.logfile ../error.log ropd.wsgi:application -w 2 -b :8000
     links:
       - redis
     networks:
@@ -36,6 +38,7 @@ services:
 
       - "/etc/letsencrypt:/etc/letsencrypt"
       - "/var/lib/letsencrypt:/var/lib/letsencrypt"
+      - "/etc/localtime:/etc/localtime"
     links:
       - redis
       - webapp:webapp
@@ -52,6 +55,7 @@ services:
     build: ./pg_db/pg_master
     volumes:
       - master_vol:/var/lib/postgresql
+      - "/etc/localtime:/etc/localtime"
     ports:
       - "5434:5432"
     env_file:
@@ -65,6 +69,7 @@ services:
     build: ./pg_db/pg_slave
     volumes:
       - slave_vol:/var/lib/postgresql
+      - "/etc/localtime:/etc/localtime"
     ports:
       - "5435:5432"
     links:
@@ -93,6 +98,7 @@ services:
       - "6379"
     volumes:
       - redis_vol:/data
+      - "/etc/localtime:/etc/localtime"
     networks:
       - rope-net
 
