@@ -1,7 +1,7 @@
 FROM python:3.7-alpine
 RUN apk update && apk add nmap postgresql-dev gcc python3-dev musl-dev vim jpeg-dev zlib-dev tzdata
-ENV TZ America/Bahia
-LABEL maintainer="Your Django Project"
+#ENV TZ America/Bahia
+LABEL maintainer="ROPe - Infraestrutura"
 
 ENV PYTHONUNBUFFERED 1
 ENV PIP_DEFAULT_TIMEOUT 100 
