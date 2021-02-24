@@ -20,7 +20,7 @@ services:
       - "/etc/localtime:/etc/localtime"
     env_file:
       - .django.env
-    command: gunicorn --access-logfile ../access.log --error.logfile ../error.log ropd.wsgi:application -w 2 -b :8000
+    command: gunicorn --access-logfile /var/log/webapp/access.log --error-logfile /var/log/webapp/error.log ropd.wsgi:application -w 2 -b :8000
     links:
       - redis
     networks:
