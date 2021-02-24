@@ -1,4 +1,4 @@
-upstream webapp {
+upstream webapp01 {
     # server APP_SERVER_1_IP;
     # server APP_SERVER_2_IP;
     server webapp:8000;
@@ -20,6 +20,9 @@ server {
     listen 443 ssl;
     listen [::]:443 ssl;
     server_name rop-e.com;
+
+    access_log /var/log/nginx/rop-e_com-access.log;
+    error_log /var/log/nginx/error.log info;
 
     # SSL
     ssl_certificate /etc/letsencrypt/live/rop-e.com/fullchain.pem;
@@ -43,19 +46,19 @@ server {
           proxy_set_header Host $http_host;
           proxy_redirect off;
     	  add_header P3P 'CP="ALL DSP COR PSAa PSDa OUR NOR ONL UNI COM NAV"';
-          proxy_pass http://webapp;
+          proxy_pass http://webapp01;
         }
 
-    location ^~ /.well-known/acme-challenge/ {
-        root /www/;
+    location ^~ /.well-known/acme-challenge {
+        root /www;
     }
 
-    location static/ {
-        root /www/static/;
+    location /static {
+        alias /www/static;
     }
 
-    location media/ {
-        root /www/media/;
+    location /media {
+        alias /www/media;
     }
 
 }
